@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';  //iconify icons
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import app from "./../firebase/firebase.config"
 import { AuthContext } from '../provider/AuthProvider';
+import { GoogleAuthProvider } from "firebase/auth";
 
 
 const Login = () => {
@@ -27,10 +28,20 @@ const Login = () => {
 
             })
             .catch(error => {
-                console.log(error.message);
                 setError(error.message);
             })
 
+    }
+
+    const handleGoogleSignIn= () => {
+        const googleProvider = new GoogleAuthProvider();
+        signInWithPopup(auth, googleProvider)
+        .then(result => {
+            console.log(result.user);
+        })
+        .catch(error => {
+            setError(error.message)
+        })
     }
 
 
@@ -69,14 +80,9 @@ const Login = () => {
                         </label>
 
                         </div>
-                        <button className='btn bg-white my-2 text-black m-auto w-[100%]'><Icon icon="flat-color-icons:google" color="white" width="34" height="34" />  Login using Google</button>
-                        <button className='btn bg-white  my-2 text-black w-[100%] m-auto'><Icon icon="mdi:github" color="black" width="37" height="37" />  Login using Github</button>
-
-                        
-
                     </form>
 
-
+                    <button onClick={handleGoogleSignIn} className='btn bg-white mb-5 text-black m-auto w-[85%]'><Icon icon="flat-color-icons:google" color="white" width="34" height="34" />  Login using Google</button>
 
                 </div>
 

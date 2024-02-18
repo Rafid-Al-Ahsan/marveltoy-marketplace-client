@@ -13,10 +13,10 @@ const Navbar = () => {
     const handleLogout = () => {
         signOut(auth)
         .then(() => {
-            console.log("Successful signout");
+           
         })
         .catch(error => {
-            console.log(error.message);
+            
         })
     }
 
@@ -32,8 +32,8 @@ const Navbar = () => {
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             <li><NavLink to="/" className="active">Home</NavLink></li>
                             <li><NavLink to="/alltoy" className="active">All Toys</NavLink></li>
-                            <li><NavLink to="/mytoy" className="active">My Toys</NavLink></li>
-                            <li><NavLink to="/addtoy" className="active">Add A Toy</NavLink></li>
+                            {user && <li><NavLink to="/mytoy" className="active">My Toys</NavLink></li>}
+                            {user && <li><NavLink to="/addtoy" className="active">Add A Toy</NavLink></li>}
                             <li><NavLink to="/blog" className="active">Blog</NavLink></li>
                         </ul>
                     </div>
@@ -45,8 +45,8 @@ const Navbar = () => {
                     <ul className="menu menu-horizontal px-1">
                         <li className='font-bold text-lg active'><NavLink to="/" className="my-link">Home</NavLink></li>
                         <li className='font-bold text-lg'><NavLink to="/alltoy" >All Toys</NavLink></li>
-                        <li className='font-bold text-lg'><NavLink to="/mytoy">My Toys</NavLink></li>
-                        <li className='font-bold text-lg'><NavLink to="/addtoy">Add A Toy</NavLink></li>
+                        {user && <li className='font-bold text-lg'><NavLink to="/mytoy">My Toys</NavLink></li>}
+                        {user && <li className='font-bold text-lg'><NavLink to="/addtoy">Add A Toy</NavLink></li>}
                         <li className='font-bold text-lg'><NavLink to="/blog">Blog</NavLink></li>
                     </ul>
                 </div>
@@ -56,7 +56,7 @@ const Navbar = () => {
                 <div className="navbar-end">
                     {/* displays user image if logged in */}
                     {user && <img
-                        src=""
+                        src={user.photoURL}
                         alt="Profile Photo"
                         className='mx-5 rounded-full'
                         style={{ width: "3rem", height: "3rem" }}
