@@ -8,10 +8,12 @@ const AuthProvider = ({ children }) => {
 
     const auth = getAuth(app);
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         onAuthStateChanged(auth, loggedUser => {
             setUser(loggedUser);
+            setLoading(false);
         })
     },[])
 
@@ -19,7 +21,8 @@ const AuthProvider = ({ children }) => {
   
 
     const authInfo = {
-        user
+        user,
+        loading
     }
     return (
         <div>

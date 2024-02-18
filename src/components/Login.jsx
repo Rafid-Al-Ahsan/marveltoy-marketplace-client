@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';  //iconify icons
 import { getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import app from "./../firebase/firebase.config"
@@ -9,6 +9,12 @@ import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
     const auth = getAuth(app);
+
+    let navigate = useNavigate();
+    let location = useLocation();
+
+    let from = location.state?.from?.pathname || "/";
+
 
     //for storing login related error msg
     const [error, setError] = useState();
@@ -25,7 +31,8 @@ const Login = () => {
 
         signInWithEmailAndPassword(auth, email, password)
             .then(result => {
-
+                // replave true clears browser history of path
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 setError(error.message);
@@ -37,7 +44,7 @@ const Login = () => {
         const googleProvider = new GoogleAuthProvider();
         signInWithPopup(auth, googleProvider)
         .then(result => {
-            console.log(result.user);
+            navigate(from, { replace: true });
         })
         .catch(error => {
             setError(error.message)
