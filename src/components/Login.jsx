@@ -1,16 +1,47 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';  //iconify icons
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import app from "./../firebase/firebase.config"
+import { AuthContext } from '../provider/AuthProvider';
+
 
 const Login = () => {
+    const auth = getAuth(app);
+
+    //for storing login related error msg
+    const [error, setError] = useState();
+    const { user } = useContext(AuthContext);
+
+    const handleLogin = event => {
+
+        //Collecting data from email & password field 
+        setError(null);
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then(result => {
+
+            })
+            .catch(error => {
+                console.log(error.message);
+                setError(error.message);
+            })
+
+    }
+
+
     return (
         <div>
 
             <div className="hero min-h-screen bg-base-200">
 
                 <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                    <p className=' text-white-300 m-auto mt-5 font-bold text-lg'>Please Login </p>
-                    <form onSubmit="" className="card-body">
+                    <p className=' text-white-300 m-auto mt-5 font-bold text-lg'>Please Login</p>
+                    <form onSubmit={handleLogin} className="card-body">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email address</span>
@@ -33,10 +64,18 @@ const Login = () => {
                                 <p className='text-center'>OR</p>
                             </label>
 
+                            <label className="text-[#ff3232]">
+                            {error}
+                        </label>
+
                         </div>
-                        <button onClick="" className='btn bg-white my-2 text-black m-auto w-[100%]'><Icon icon="flat-color-icons:google" color="white" width="34" height="34" />  Login using Google</button>
-                        <button onClick="" className='btn bg-white  my-2 text-black w-[100%] m-auto'><Icon icon="mdi:github" color="black" width="37" height="37" />  Login using Github</button>
+                        <button className='btn bg-white my-2 text-black m-auto w-[100%]'><Icon icon="flat-color-icons:google" color="white" width="34" height="34" />  Login using Google</button>
+                        <button className='btn bg-white  my-2 text-black w-[100%] m-auto'><Icon icon="mdi:github" color="black" width="37" height="37" />  Login using Github</button>
+
+                        
+
                     </form>
+
 
 
                 </div>

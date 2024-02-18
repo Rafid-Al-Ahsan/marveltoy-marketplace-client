@@ -13,11 +13,11 @@ const Navbar = () => {
                         </div>
                         {/* Small device responsive links */}
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><NavLink to="/" activeClassName="active">Home</NavLink></li>
-                            <li><NavLink to="/alltoy" activeClassName="active">All Toys</NavLink></li>
-                            <li><NavLink to="/mytoy" activeClassName="active">My Toys</NavLink></li>
-                            <li><NavLink to="/addtoy" activeClassName="active">Add A Toy</NavLink></li>
-                            <li><NavLink to="" activeClassName="active">Blog</NavLink></li>
+                            <li><NavLink to="/" className="active">Home</NavLink></li>
+                            <li><NavLink to="/alltoy" className="active">All Toys</NavLink></li>
+                            <li><NavLink to="/mytoy" className="active">My Toys</NavLink></li>
+                            <li><NavLink to="/addtoy" className="active">Add A Toy</NavLink></li>
+                            <li><NavLink to="" className="active">Blog</NavLink></li>
                         </ul>
                     </div>
                     {/* Logo title */}
@@ -26,11 +26,11 @@ const Navbar = () => {
                 {/* Large device responsive links */}
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        <li className='font-bold text-lg'><NavLink exact to="/" activeClassName="active text-xl" className="my-link">Home</NavLink></li>
-                        <li className='font-bold text-lg'><NavLink to="/alltoy" activeClassName="active">All Toys</NavLink></li>
-                        <li className='font-bold text-lg'><NavLink to="/mytoy" activeClassName="active">My Toys</NavLink></li>
-                        <li className='font-bold text-lg'><NavLink to="/addtoy" activeClassName="active">Add A Toy</NavLink></li>
-                        <li className='font-bold text-lg'><NavLink to="/blog" activeClassName="active">Blog</NavLink></li>
+                        <li className='font-bold text-lg active'><NavLink to="/" className="my-link">Home</NavLink></li>
+                        <li className='font-bold text-lg'><NavLink to="/alltoy" >All Toys</NavLink></li>
+                        <li className='font-bold text-lg'><NavLink to="/mytoy">My Toys</NavLink></li>
+                        <li className='font-bold text-lg'><NavLink to="/addtoy">Add A Toy</NavLink></li>
+                        <li className='font-bold text-lg'><NavLink to="/blog">Blog</NavLink></li>
                     </ul>
                 </div>
 
