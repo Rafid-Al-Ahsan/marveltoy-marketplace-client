@@ -60,7 +60,7 @@ const Navbar = () => {
                         alt="Profile Photo"
                         className='mx-5 rounded-full'
                         style={{ width: "3rem", height: "3rem" }}
-                        title=""
+                        title={user.displayName}
                     />}
                     {/* Login and Logout button */}
                     {user ? <button onClick={handleLogout} className="btn bg-[#a3174f] px-8 rounded-full font-bold text-lg mr-10">Logout</button>: <Link to='login' className="btn bg-[#a3174f] px-8 rounded-full font-bold text-lg mr-10">Login</Link>}
