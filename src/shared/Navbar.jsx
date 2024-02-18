@@ -1,8 +1,25 @@
-import React from 'react';
+import { getAuth, signOut } from 'firebase/auth';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom'; //for highlighting active route
+import app from '../firebase/firebase.config';
+import { AuthContext } from '../provider/AuthProvider';
 
 const Navbar = () => {
+
+    const {user} = useContext(AuthContext);
+    const auth = getAuth(app);
+
+    const handleLogout = () => {
+        signOut(auth)
+        .then(() => {
+            console.log("Successful signout");
+        })
+        .catch(error => {
+            console.log(error.message);
+        })
+    }
+
     return (
         <div>
             <div className="navbar bg-black text-white">
@@ -17,7 +34,7 @@ const Navbar = () => {
                             <li><NavLink to="/alltoy" className="active">All Toys</NavLink></li>
                             <li><NavLink to="/mytoy" className="active">My Toys</NavLink></li>
                             <li><NavLink to="/addtoy" className="active">Add A Toy</NavLink></li>
-                            <li><NavLink to="" className="active">Blog</NavLink></li>
+                            <li><NavLink to="/blog" className="active">Blog</NavLink></li>
                         </ul>
                     </div>
                     {/* Logo title */}
@@ -38,15 +55,15 @@ const Navbar = () => {
 
                 <div className="navbar-end">
                     {/* displays user image if logged in */}
-                    <img
+                    {user && <img
                         src=""
                         alt="Profile Photo"
                         className='mx-5 rounded-full'
                         style={{ width: "3rem", height: "3rem" }}
                         title=""
-                    />
+                    />}
                     {/* Login and Logout button */}
-                    <Link to='login' className="btn bg-[#a3174f] px-8 rounded-full font-bold text-lg mr-10">Login</Link>
+                    {user ? <button onClick={handleLogout} className="btn bg-[#a3174f] px-8 rounded-full font-bold text-lg mr-10">Logout</button>: <Link to='login' className="btn bg-[#a3174f] px-8 rounded-full font-bold text-lg mr-10">Login</Link>}
                 </div>
 
             </div>

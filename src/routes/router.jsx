@@ -7,6 +7,8 @@ import {
 import Mytoy from '../components/Mytoy';
 import Addtoy from '../components/Addtoy';
 import Login from '../components/Login';
+import Alltoys from '../components/Alltoys';
+import Blog from '../components/Blog';
 
 const router = createBrowserRouter([
     {
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
         {
             path: "/addtoy",
             element: <Addtoy></Addtoy>
+        },
+        {
+            path: "/alltoy",
+            element: <Alltoys></Alltoys>
+        },
+        {
+            path: "/blog",
+            element: <Blog></Blog>
         },
       ]
     },
