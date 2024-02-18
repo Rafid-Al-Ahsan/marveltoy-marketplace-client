@@ -4,6 +4,9 @@ import Main from '../components/Main';
 import {
     createBrowserRouter
   } from "react-router-dom";
+import Mytoy from '../components/Mytoy';
+import Addtoy from '../components/Addtoy';
+import Login from '../components/Login';
 
 const router = createBrowserRouter([
     {
@@ -13,7 +16,19 @@ const router = createBrowserRouter([
         {
             path: "/",
             element: <Home></Home>
-        }
+        },
+        {
+            path: "/login",
+            element: <Login></Login>
+        },
+        {
+            path: "/mytoy",
+            element: <Mytoy></Mytoy>
+        },
+        {
+            path: "/addtoy",
+            element: <Addtoy></Addtoy>
+        },
       ]
     },
   ]);
