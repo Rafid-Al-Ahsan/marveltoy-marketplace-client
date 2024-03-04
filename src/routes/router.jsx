@@ -12,6 +12,7 @@ import Blog from '../components/Blog';
 import Registration from '../components/Registration';
 import Herodetails from '../components/Herodetails'
 import PrivateRouter from './PrivateRouter';
+import Updatetoy from '../components/Updatetoy';
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,11 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog></Blog>
+      },
+      {
+        path: "/updatetoy/:id",
+        element: <PrivateRouter><Updatetoy></Updatetoy></PrivateRouter>,
+        loader: ({ params }) => fetch(`http://localhost:5000/addtoy/${params.id}`)
       },
     ]
   },
