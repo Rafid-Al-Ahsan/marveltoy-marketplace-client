@@ -38,7 +38,8 @@ const Navbar = () => {
                         </ul>
                     </div>
                     {/* Logo title */}
-                    <h1 className="text-3xl font-bold p-2 ml-10 text-[#fff] bg-[#cb191f]">S-VALLEY</h1>
+                    <img src='https://i.ibb.co/LNJ15zY/logo.png' alt="" className='w-16'/>
+                    <h1 className="text-3xl font-bold p-2 text-[#fff] bg-[#cb191f]">S-VALLEY</h1>
                 </div>
                 {/* Large device responsive links */}
                 <div className="navbar-center hidden lg:flex">
