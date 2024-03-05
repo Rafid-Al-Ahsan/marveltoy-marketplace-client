@@ -13,6 +13,7 @@ import Registration from '../components/Registration';
 import Herodetails from '../components/Herodetails'
 import PrivateRouter from './PrivateRouter';
 import Updatetoy from '../components/Updatetoy';
+import Notfound from '../components/Notfound';
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,11 @@ const router = createBrowserRouter([
       },
     ]
   },
+  {
+    path: "*",
+    element: <Notfound></Notfound>
+  },
+
 ]);
 
 export default router;
