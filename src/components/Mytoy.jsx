@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../routes/AuthProvider';
+import { AuthContext } from '../provider/AuthProvider';
 import { Link } from 'react-router-dom';
 // React Rating
 import { Rating } from '@smastrom/react-rating';
