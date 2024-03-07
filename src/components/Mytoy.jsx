@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 // React Rating
 import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css';
+// React Tostify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Mytoy = () => {
     const { user } = useContext(AuthContext);
@@ -19,19 +22,36 @@ const Mytoy = () => {
         setToys(data);
     };
 
-    const handleDelete = async (id) => {
-        console.log('deleted', id);
+    const handleDelete = async (id, name) => {
 
-        const response = await fetch(`http://localhost:5000/addtoy/${id}`, {
-            method: 'DELETE',
-        });
-        const data = await response.json();
-        console.log(data);
+        const result = confirm(`Are you sure you want to delete this item ${name}`);
 
-        if (data.deletedCount > 0) {
-            alert('deleted successfuly');
-            const remaining = toys.filter((toy) => toy._id !== id);
-            setToys(remaining);
+        if (result === true) {
+            const response = await fetch(`http://localhost:5000/addtoy/${id}`, {
+                method: 'DELETE',
+            });
+            const data = await response.json();
+            console.log(data);
+
+            if (data.deletedCount > 0) {
+                // delete from database code
+                const remaining = toys.filter((toy) => toy._id !== id);
+                setToys(remaining);
+
+                // Nothing complicated just react tostify code 
+                // React toastify
+                toast.success(`${name} deleted successfully`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
+                setDisable(true);
+            }
         }
     };
 
@@ -57,15 +77,16 @@ const Mytoy = () => {
                     <h1 className='text-xl'>Sort by Price</h1>
                     <form>
                         <input type="radio" id="ascending" name="sortOrder" value="ascending" onChange={() => handleSort('ascending')} />
-                        <label htmlFor="ascending"> Ascending</label><br/>
+                        <label htmlFor="ascending"> Ascending</label><br />
                         <input type="radio" id="descending" name="sortOrder" value="descending" onChange={() => handleSort('descending')} />
-                        <label htmlFor="descending"> Descending</label><br/>
+                        <label htmlFor="descending"> Descending</label><br />
                         <input type="radio" id="default" name="sortOrder" value="default" onChange={() => handleSort('default')} />
-                        <label htmlFor="default"> Default</label><br/>
+                        <label htmlFor="default"> Default</label><br />
                     </form>
                 </div>
                 <div className='w-[85%] grid sm:grid-cols-1 md:grid-cols-2 m-auto'>
                     {toys.map(toy => <Card key={toy._id} toy={toy} handleDelete={handleDelete}></Card>)}
+                    <ToastContainer />
                 </div>
             </div>
         </div>
@@ -86,7 +107,7 @@ function Card({ toy, handleDelete }) {
                 <Rating style={{ maxWidth: 120 }} readOnly value={toy.rating} className="mt-2" />
                 <div className='flex'>
                     <Link to={`/updatetoy/${toy._id}`}><button className='bg-[#0d6efd] h-10 px-8 mr-5 font-bold'>Update</button></Link>
-                    <button onClick={() => handleDelete(toy._id)} className='bg-[#dc3545] px-8 h-10 mr-5 font-bold'>Delete</button>
+                    <button onClick={() => handleDelete(toy._id, toy.toyname)} className='bg-[#dc3545] px-8 h-10 mr-5 font-bold'>Delete</button>
                 </div>
             </div>
         </div>

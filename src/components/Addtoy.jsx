@@ -3,6 +3,11 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 
+// React Tostify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 const Addtoy = () => {
 
     const { user } = useContext(AuthContext);
@@ -33,6 +38,20 @@ const Addtoy = () => {
         .then(response => {response.json()})
         .then(data => console.log(data))
         form.reset();
+
+        toast.success('Toy added successfully', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+        setDisable(true);
+
+
     }
 
     return (
@@ -57,13 +76,13 @@ const Addtoy = () => {
                         <label className="label">
                             <span className="label-text">Seller Name</span>
                         </label>
-                        <input type="text" name="sellername" placeholder="seller name" defaultValue={user?.displayName} className="input input-bordered" required />
+                        <input type="text" name="sellername" placeholder="seller name" value={user?.displayName} className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Seller Email</span>
                         </label>
-                        <input type="email" name="email" placeholder="email" defaultValue={user?.email} className="input input-bordered" required />
+                        <input type="email" name="email" placeholder="email" value={user?.email} className="input input-bordered" required />
                     </div>
                     <div>
                         <label className='label'>
@@ -103,6 +122,7 @@ const Addtoy = () => {
                     <div className="form-control">
                         <div className="form-control mt-6">
                             <button className="btn bg-[#a3174f]">Submit</button>
+                            <ToastContainer />
                         </div>
 
                     </div>

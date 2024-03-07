@@ -1,6 +1,10 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 
+// React Tostify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Updatetoy = () => {
 
     const toy = useLoaderData();
@@ -32,9 +36,23 @@ const Updatetoy = () => {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            if(data.modifiedCount>0) alert("Toy information updated successfully")
+            if(data.modifiedCount>0) {
+                toast.success('Information updated successfully', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
+                setDisable(true);
+        
+            }
         })
 
+       
     }
     return (
         <div>
@@ -57,13 +75,13 @@ const Updatetoy = () => {
                         <label className="label">
                             <span className="label-text">Seller Name</span>
                         </label>
-                        <input type="text" name="sellername" placeholder="seller name" defaultValue={toy.sellername} className="input input-bordered" required />
+                        <input type="text" name="sellername" placeholder="seller name" value={toy.sellername} className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Seller Email</span>
                         </label>
-                        <input type="email" name="email" placeholder="email"  defaultValue={toy.selleremail}className="input input-bordered" required />
+                        <input type="email" name="email" placeholder="email"  value={toy.selleremail}className="input input-bordered" required />
                     </div>
                     <div>
                         <label className='label'>
@@ -103,6 +121,7 @@ const Updatetoy = () => {
                     <div className="form-control">
                         <div className="form-control mt-6">
                             <button className="btn bg-[#0d6efd]">Update</button>
+                            <ToastContainer />
                         </div>
 
                     </div>
