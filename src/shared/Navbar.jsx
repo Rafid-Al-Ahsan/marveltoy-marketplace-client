@@ -1,24 +1,25 @@
 import { getAuth, signOut } from 'firebase/auth';
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { NavLink } from 'react-router-dom'; //for highlighting active route
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom'; //for highlighting active route
 import app from '../firebase/firebase.config';
 import { AuthContext } from '../provider/AuthProvider';
 
 const Navbar = () => {
-
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const auth = getAuth(app);
+    const location = useLocation();
+    const [pageTitle, setPageTitle] = useState('S-VALLEY');
 
     const handleLogout = () => {
         signOut(auth)
-        .then(() => {
-           
-        })
-        .catch(error => {
-            
-        })
-    }
+            .then(() => {})
+            .catch(error => {});
+    };
+
+    useEffect(() => {
+        const path = location.pathname.substring(1);
+        setPageTitle('S-Valley | '+ path || 'S-VALLEY');
+    }, [location.pathname]);
 
     return (
         <div>
@@ -39,7 +40,7 @@ const Navbar = () => {
                     </div>
                     {/* Logo title */}
                     <img src='https://i.ibb.co/LNJ15zY/logo.png' alt="" className='w-16'/>
-                    <h1 className="text-3xl font-bold p-2 text-[#fff] bg-[#cb191f]">S-VALLEY</h1>
+                    <h1 className="text-3xl font-bold p-2 text-[#fff] bg-[#cb191f]">{pageTitle}</h1>
                 </div>
                 {/* Large device responsive links */}
                 <div className="navbar-center hidden lg:flex">
@@ -51,9 +52,6 @@ const Navbar = () => {
                         <li className='font-bold text-lg'><NavLink to="/blog">Blog</NavLink></li>
                     </ul>
                 </div>
-
-
-
                 <div className="navbar-end">
                     {/* displays user image if logged in */}
                     {user && <img
@@ -66,9 +64,7 @@ const Navbar = () => {
                     {/* Login and Logout button */}
                     {user ? <button onClick={handleLogout} className="btn bg-[#a3174f] px-8 rounded-full font-bold text-lg mr-10">Logout</button>: <Link to='login' className="btn bg-[#a3174f] px-8 rounded-full font-bold text-lg mr-10">Login</Link>}
                 </div>
-
             </div>
-
         </div>
     );
 };
