@@ -8,7 +8,7 @@ const Navbar = () => {
     const { user } = useContext(AuthContext);
     const auth = getAuth(app);
     const location = useLocation();
-    const [pageTitle, setPageTitle] = useState('S-VALLEY');
+    const [pageTitle, setPageTitle] = useState('Home');
 
     const handleLogout = () => {
         signOut(auth)
@@ -18,7 +18,7 @@ const Navbar = () => {
 
     useEffect(() => {
         const path = location.pathname.substring(1);
-        setPageTitle('S-Valley | '+ path || 'S-VALLEY');
+        setPageTitle(`S-VALLEY | ${path || 'Home'}`);
     }, [location.pathname]);
 
     return (
