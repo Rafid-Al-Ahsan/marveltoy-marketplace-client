@@ -14,7 +14,7 @@ const Category = () => {
     const [toys, setToys] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/toy')
+        fetch('https://toy-marketplace-server-drab-psi.vercel.app/toy')
             .then(response => response.json())
             .then(data => setToys(data))
     }, [])

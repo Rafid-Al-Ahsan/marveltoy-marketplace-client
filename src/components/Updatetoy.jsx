@@ -26,7 +26,7 @@ const Updatetoy = () => {
         const updatedtoy = {photo, toyname2, sellername, selleremail, subcategory, price, quantity, rating, description} ;
         // console.log(toy);
 
-        fetch(`http://localhost:5000/addtoy/${toy._id}`,{
+        fetch(`https://toy-marketplace-server-drab-psi.vercel.app/addtoy/${toy._id}`,{
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

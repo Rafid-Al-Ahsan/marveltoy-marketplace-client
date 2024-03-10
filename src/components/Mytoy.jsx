@@ -17,7 +17,7 @@ const Mytoy = () => {
     }, []);
 
     const fetchToys = async () => {
-        const response = await fetch(`http://localhost:5000/addtoy/email/${user.email}`);
+        const response = await fetch(`https://toy-marketplace-server-drab-psi.vercel.app/addtoy/email/${user.email}`);
         const data = await response.json();
         setToys(data);
     };
@@ -27,7 +27,7 @@ const Mytoy = () => {
         const result = confirm(`Are you sure you want to delete this item ${name}`);
 
         if (result === true) {
-            const response = await fetch(`http://localhost:5000/addtoy/${id}`, {
+            const response = await fetch(`https://toy-marketplace-server-drab-psi.vercel.app/addtoy/${id}`, {
                 method: 'DELETE',
             });
             const data = await response.json();
@@ -58,12 +58,12 @@ const Mytoy = () => {
     const handleSort = async (sortOrder) => {
         let response;
         if (sortOrder === 'ascending') {
-            response = await fetch(`http://localhost:5000/addtoy/email/ascending/${user.email}`);
+            response = await fetch(`https://toy-marketplace-server-drab-psi.vercel.app/addtoy/email/ascending/${user.email}`);
         } else if (sortOrder === 'descending') {
-            response = await fetch(`http://localhost:5000/addtoy/email/descending/${user.email}`);
+            response = await fetch(`https://toy-marketplace-server-drab-psi.vercel.app/addtoy/email/descending/${user.email}`);
         }
         else if (sortOrder === 'default') {
-            response = await fetch(`http://localhost:5000/addtoy/email/${user.email}`);
+            response = await fetch(`https://toy-marketplace-server-drab-psi.vercel.app/addtoy/email/${user.email}`);
         }
         const data = await response.json();
         setToys(data);
