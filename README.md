@@ -27,6 +27,7 @@ Welcome to the S-VALLEY! This is a toy-marketplace web site where visiter can vi
 - 404 page integration: If a router does not exits then a custom 404 page not found will be displayed.
 - Toy Details are private route protected: Meaning a user has to signin first in order to view toy details.
 - Spinner Animation: Spinner animation is displayed when data is in loading/fetching state.
+- React Helmet Async: reusable React component will manage all of your changes to the document head.
 
 ## Installation
 

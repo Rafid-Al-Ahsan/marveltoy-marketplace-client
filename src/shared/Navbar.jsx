@@ -8,7 +8,7 @@ const Navbar = () => {
     const { user } = useContext(AuthContext);
     const auth = getAuth(app);
     const location = useLocation();
-    const [pageTitle, setPageTitle] = useState('Home');
+    
 
     const handleLogout = () => {
         signOut(auth)
@@ -16,10 +16,7 @@ const Navbar = () => {
             .catch(error => {});
     };
 
-    useEffect(() => {
-        const path = location.pathname.substring(1);
-        setPageTitle(`S-VALLEY | ${path || 'Home'}`);
-    }, [location.pathname]);
+   
 
     return (
         <div>
@@ -40,7 +37,7 @@ const Navbar = () => {
                     </div>
                     {/* Logo title */}
                     <img src='https://i.ibb.co/LNJ15zY/logo.png' alt="" className='w-16'/>
-                    <h1 className="text-3xl font-bold p-2 text-[#fff] bg-[#cb191f]">{pageTitle}</h1>
+                    <h1 className="text-3xl font-bold p-2 text-[#fff] bg-[#cb191f]">S-VALLEY </h1>
                 </div>
                 {/* Large device responsive links */}
                 <div className="navbar-center hidden lg:flex">

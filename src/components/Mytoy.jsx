@@ -7,6 +7,7 @@ import '@smastrom/react-rating/style.css';
 // React Tostify
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet-async';
 
 const Mytoy = () => {
     const { user } = useContext(AuthContext);
@@ -49,7 +50,7 @@ const Mytoy = () => {
                     draggable: true,
                     progress: undefined,
                     theme: "light",
-                    });
+                });
                 setDisable(true);
             }
         }
@@ -71,6 +72,10 @@ const Mytoy = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>S-Valley | Mytoy</title>
+                <link rel="canonical" href="https://www.tacobell.com/" />
+            </Helmet>
             <p className='text-center my-5 text-xl font-bold'>Toys Added by: {user?.displayName}</p>
             <div className='flex w-[95%] m-auto'>
                 <div className='w-[15%]'>

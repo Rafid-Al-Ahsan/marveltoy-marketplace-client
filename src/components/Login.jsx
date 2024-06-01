@@ -5,6 +5,7 @@ import { getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/a
 import app from "./../firebase/firebase.config"
 import { AuthContext } from '../provider/AuthProvider';
 import { GoogleAuthProvider } from "firebase/auth";
+import { Helmet } from 'react-helmet-async';
 
 
 const Login = () => {
@@ -55,6 +56,10 @@ const Login = () => {
     return (
         <div>
 
+            <Helmet>
+                <title>S-Valley | Login</title>
+            </Helmet>
+            
             <div className="hero min-h-screen bg-base-200">
 
                 <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useLoaderData } from 'react-router-dom';
 
 // React Tostify
@@ -18,7 +19,7 @@ const Updatetoy = () => {
         const sellername = form.sellername.value;
         const selleremail = form.email.value;
         const subcategory = form.subcategory.value;
-        const price = form.price.value;
+        const price = parseFloat(form.price.value);
         const quantity = form.quantity.value;
         const rating = form.rating.value;
         const description = form.description.value;
@@ -56,6 +57,10 @@ const Updatetoy = () => {
     }
     return (
         <div>
+            
+            <Helmet>
+                <title>S-Valley | UpdateToy</title>
+            </Helmet>
              <div className='w-[100%]'>
                 <form onSubmit={handleUpdate} className="card-body">
                     <h4 className='text-2xl font-bold'>Update required information</h4>

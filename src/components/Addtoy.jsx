@@ -6,6 +6,7 @@ import { AuthContext } from '../provider/AuthProvider';
 // React Tostify
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet-async';
 
 
 const Addtoy = () => {
@@ -20,7 +21,7 @@ const Addtoy = () => {
         const sellername = form.sellername.value;
         const selleremail = form.email.value;
         const subcategory = form.subcategory.value;
-        const price = form.price.value;
+        const price = parseFloat(form.price.value);
         const quantity = form.quantity.value;
         const rating = form.rating.value;
         const description = form.description.value;
@@ -56,6 +57,9 @@ const Addtoy = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>S-Valley | Addtoy</title>
+            </Helmet>
 
             <div className='w-[100%]'>
                 <form onSubmit={handleAddToy} className="card-body">

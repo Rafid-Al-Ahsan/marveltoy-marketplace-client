@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 // React Rating
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
+import { Helmet } from 'react-helmet-async';
 
 
 const Alltoys = () => {
@@ -12,6 +13,9 @@ const Alltoys = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>S-Valley | Alltoy</title>
+            </Helmet>
              <p className='text-center my-5 text-xl font-bold'>Toys Added by All Users</p>
             {/* <h2>{loader.length}</h2> */}
             {/* {loader.map(toy => <p key={toy._id}>{toy.toyname} : {toy.sellername}</p>)} */}
